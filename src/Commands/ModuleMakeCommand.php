@@ -80,10 +80,10 @@ class ModuleMakeCommand extends Command
     }
 
     /**
-    * Get module type .
-    *
-    * @return string
-    */
+     * Get module type .
+     *
+     * @return string
+     */
     private function getModuleType()
     {
         $isPlain = $this->option('plain');
@@ -91,6 +91,7 @@ class ModuleMakeCommand extends Command
         $isShow = $this->option('show');
         $isEdit = $this->option('edit');
         $isCreate = $this->option('create');
+        $isInertia = $this->option('inertia');
 
         if ($isPlain && $isApi) {
             return 'web';
@@ -99,6 +100,8 @@ class ModuleMakeCommand extends Command
             return 'plain';
         } elseif ($isApi) {
             return 'api';
+        } elseif ($isInertia) {
+            return 'inertia';
         } elseif ($isShow) {
             return 'show';
         }elseif ($isEdit) {

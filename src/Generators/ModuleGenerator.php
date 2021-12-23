@@ -394,14 +394,21 @@ class ModuleGenerator extends Generator
 
         if (GenerateConfigReader::read('controller')->generate() === true) {
             $options = $this->type=='api'?['--api'=>true]:[];
+            $options = $this->type=='inertia'?['--inertia'=>true]:[];
             $this->console->call('module:make-controller', [
-                'controller' => $this->getName() . 'Controller',
-                'module' => $this->getName(),
-            ]+$options);
+                    'controller' => $this->getName() . 'Controller',
+                    'module' => $this->getName(),
+                ]+$options);
         }
         if (GenerateConfigReader::read('vue')->generate() === true) {
             $this->console->call('module:make-vue', [
-                'vue' => $this->getName(),
+                    'vue' => $this->getName(),
+                    'module' => $this->getName(),
+                ]+$options);
+        }
+        if (GenerateConfigReader::read('model')->generate() === true) {
+            $this->console->call('module:make-model', [
+                'model' => $this->getName(),
                 'module' => $this->getName(),
             ]);
         }

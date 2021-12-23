@@ -2,10 +2,12 @@
 
 namespace $CLASS_NAMESPACE$;
 
+use App\Helper\RequestHelper;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Modules\Users\Entities\$STUDLY_NAME$;
+use App\Http\Controllers\Controller;
+use Modules\$STUDLY_NAME$\Entities\$STUDLY_NAME$;
+//use Modules\$STUDLY_NAME$\Http\Requests\$STUDLY_NAME$;
 
 class $CLASS$ extends Controller
 {
@@ -19,7 +21,7 @@ class $CLASS$ extends Controller
         $this->$LOWER_NAME$ = new $STUDLY_NAME$();
     }
 
-    public function index()
+    public function index(Request $request)
     {
          return $this->sendDataSuccess([
                    'title' => '$STUDLY_NAME$',

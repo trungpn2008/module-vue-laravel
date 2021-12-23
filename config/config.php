@@ -38,6 +38,7 @@ return [
             'assets/js/Pages/show' => 'Resources/assets/js/Pages/Show.vue',
             'assets/js/Pages/edit' => 'Resources/assets/js/Pages/Edit.vue',
             'assets/js/Pages/create' => 'Resources/assets/js/Pages/Create.vue',
+            'assets/js/Pages/index' => 'Resources/assets/js/Pages/Index.vue',
             'assets/js/app' => 'Resources/assets/js/app.js',
             'assets/sass/app' => 'Resources/assets/sass/app.scss',
             'webpack' => 'webpack.mix.js',

@@ -72,6 +72,9 @@ class ModuleMakeCommand extends Command
             ['web', null, InputOption::VALUE_NONE, 'Generate a web module.'],
             ['disabled', 'd', InputOption::VALUE_NONE, 'Do not enable the module at creation.'],
             ['force', null, InputOption::VALUE_NONE, 'Force the operation to run when the module already exists.'],
+            ['show', null, InputOption::VALUE_NONE, 'Generate an vue module.'],
+            ['edit', null, InputOption::VALUE_NONE, 'Generate an vue module.'],
+            ['create', null, InputOption::VALUE_NONE, 'Generate an vue module.'],
         ];
     }
 
@@ -84,6 +87,9 @@ class ModuleMakeCommand extends Command
     {
         $isPlain = $this->option('plain');
         $isApi = $this->option('api');
+        $isShow = $this->option('show');
+        $isEdit = $this->option('edit');
+        $isCreate = $this->option('create');
 
         if ($isPlain && $isApi) {
             return 'web';
@@ -92,6 +98,12 @@ class ModuleMakeCommand extends Command
             return 'plain';
         } elseif ($isApi) {
             return 'api';
+        } elseif ($isShow) {
+            return 'show';
+        }elseif ($isEdit) {
+            return 'edit';
+        } elseif ($isCreate) {
+            return 'create';
         } else {
             return 'web';
         }

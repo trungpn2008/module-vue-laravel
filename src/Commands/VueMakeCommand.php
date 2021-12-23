@@ -9,7 +9,7 @@ use Nwidart\Modules\Traits\ModuleCommandTrait;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
-class ControllerMakeCommand extends GeneratorCommand
+class VueMakeCommand extends GeneratorCommand
 {
     use ModuleCommandTrait;
 
@@ -18,21 +18,21 @@ class ControllerMakeCommand extends GeneratorCommand
      *
      * @var string
      */
-    protected $argumentName = 'controller';
+    protected $argumentName = 'vue';
 
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'module:make-controller';
+    protected $name = 'module:make-vue';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate new restful controller for the specified module.';
+    protected $description = 'Generate new restful Vue for the specified module.';
 
     /**
      * Get controller name.
@@ -43,9 +43,9 @@ class ControllerMakeCommand extends GeneratorCommand
     {
         $path = $this->laravel['modules']->getModulePath($this->getModuleName());
 
-        $controllerPath = GenerateConfigReader::read('controller');
-
-        return $path . $controllerPath->getPath() . '/' . $this->getControllerName() . '.php';
+        $controllerPath = GenerateConfigReader::read('Resources');
+        $viewPathVue = '/assets/js/Pages';
+        return $path . $controllerPath->getPath() . $viewPathVue .'/' . $this->getControllerName() . '.vue';
     }
 
     /**
@@ -77,7 +77,7 @@ class ControllerMakeCommand extends GeneratorCommand
     protected function getArguments()
     {
         return [
-            ['controller', InputArgument::REQUIRED, 'The name of the controller class.'],
+            ['vue', InputArgument::REQUIRED, 'The name of the vue class.'],
             ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
         ];
     }
@@ -88,23 +88,24 @@ class ControllerMakeCommand extends GeneratorCommand
     protected function getOptions()
     {
         return [
-            ['plain', 'p', InputOption::VALUE_NONE, 'Generate a plain controller', null],
-            ['api', null, InputOption::VALUE_NONE, 'Exclude the create and edit methods from the controller.'],
+            ['create', 'c', InputOption::VALUE_NONE, 'Generate create vue', null],
+            ['edit', 'e', InputOption::VALUE_NONE, 'Generate create edit'],
+            ['show', 's', InputOption::VALUE_NONE, 'Generate create show'],
         ];
     }
 
     /**
      * @return array|string
      */
-    protected function getControllerName()
+    protected function getVueName()
     {
-        $controller = Str::studly($this->argument('controller'));
+        $vue = Str::studly($this->argument('vue'));
 
-        if (Str::contains(strtolower($controller), 'controller') === false) {
-            $controller .= 'Controller';
+        if (Str::contains(strtolower($vue), 'vue') === false) {
+            $vue .= 'vue';
         }
 
-        return $controller;
+        return $vue;
     }
 
     /**
@@ -112,14 +113,14 @@ class ControllerMakeCommand extends GeneratorCommand
      */
     private function getControllerNameWithoutNamespace()
     {
-        return class_basename($this->getControllerName());
+        return class_basename($this->getVueName());
     }
 
     public function getDefaultNamespace() : string
     {
         $module = $this->laravel['modules'];
 
-        return $module->config('paths.generator.controller.namespace') ?: $module->config('paths.generator.controller.path', 'Http/Controllers');
+        return $module->config('paths.generator.vue.namespace') ?: $module->config('paths.generator.vue.path', 'Resources/assets/js/Pages');
     }
 
     /**
@@ -128,14 +129,14 @@ class ControllerMakeCommand extends GeneratorCommand
      */
     protected function getStubName()
     {
-        if ($this->option('plain') === true) {
-            $stub = '/controller-plain.stub';
-        } elseif ($this->option('api') === true) {
-            $stub = '/controller-api.stub';
-        }  elseif ($this->option('inertia') === true) {
-            $stub = '/controller-inertia.stub';
+        if ($this->option('create') === true) {
+            $stub = '/assets/js/Pages/create.stub';
+        } elseif ($this->option('edit') === true) {
+            $stub = '/assets/js/Pages/edit.stub';
+        } elseif ($this->option('show') === true) {
+            $stub = '/assets/js/Pages/show.stub';
         } else {
-            $stub = '/controller.stub';
+            $stub = '/assets/js/Pages/index.stub';
         }
 
         return $stub;

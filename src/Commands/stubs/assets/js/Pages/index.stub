@@ -1,0 +1,55 @@
+<template>
+  <default>
+    <template v-slot:breadcrum>
+        <breadcrum  :category="category" :menu="menu" :title="title"/>
+    </template>
+    <template v-slot:filter>
+        <filter-bar />
+    </template>
+    <template v-slot:fastAction>
+        <fast-action />
+    </template>
+     <template v-slot:linkList>
+        <list-link />
+    </template>
+    <template v-slot:header>
+        <header />
+    </template>
+    <template v-slot:content>
+        <list-header />
+        <list-body :add="'users.create'"/>
+    </template>
+  </default>
+</template>
+
+<script>
+import Breadcrum from '../../../../../../resources/js/components/Breadcrum/Breadcrum.vue'
+import FastAction from '../../../../../../resources/js/components/KBSidebar/FastAction.vue'
+import FilterBar from '../../../../../../resources/js/components/KBSidebar/FilterBar.vue'
+import ListLink from '../../../../../../resources/js/components/KBSidebar/ListLink.vue'
+import ListBody from '../../../../../../resources/js/components/List/ListBody.vue'
+import ListHeader from '../../../../../../resources/js/components/List/ListHeader.vue'
+import Default from '../../../../../../resources/js/layouts/default.vue'
+export default {
+  components: {  Default, Breadcrum, FilterBar, FastAction, ListHeader, ListBody, ListLink },
+  props:{
+        title :{
+            type: String,
+            default : ""
+        },
+        category :{
+            type: String,
+            default : ""
+        },
+        menu :{
+            type: String,
+            default : ""
+        }
+    }
+
+}
+</script>
+
+<style>
+
+</style>

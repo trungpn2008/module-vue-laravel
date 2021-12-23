@@ -399,6 +399,12 @@ class ModuleGenerator extends Generator
                 'module' => $this->getName(),
             ]+$options);
         }
+        if (GenerateConfigReader::read('vue')->generate() === true) {
+            $this->console->call('module:make-vue', [
+                'vue' => $this->getName(),
+                'module' => $this->getName(),
+            ]);
+        }
     }
 
     /**

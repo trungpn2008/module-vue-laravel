@@ -44,8 +44,8 @@ class VueMakeCommand extends GeneratorCommand
         $path = $this->laravel['modules']->getModulePath($this->getModuleName());
 
         $controllerPath = GenerateConfigReader::read('Resources');
-        $viewPathVue = '/assets/js/Pages';
-        return $path . $controllerPath->getPath() . $viewPathVue .'/' . $this->getControllerName() . '.vue';
+        $viewPathVue = 'Resources/assets/js/Pages';
+        return $path . $controllerPath->getPath() . $viewPathVue .'/' . $this->getVueName() . '.vue';
     }
 
     /**
@@ -57,10 +57,10 @@ class VueMakeCommand extends GeneratorCommand
 
         return (new Stub($this->getStubName(), [
             'MODULENAME'        => $module->getStudlyName(),
-            'CONTROLLERNAME'    => $this->getControllerName(),
+            'CONTROLLERNAME'    => $this->getVueName(),
             'NAMESPACE'         => $module->getStudlyName(),
             'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
-            'CLASS'             => $this->getControllerNameWithoutNamespace(),
+            'CLASS'             => $this->getVueNameWithoutNamespace(),
             'LOWER_NAME'        => $module->getLowerName(),
             'MODULE'            => $this->getModuleName(),
             'NAME'              => $this->getModuleName(),
@@ -102,7 +102,7 @@ class VueMakeCommand extends GeneratorCommand
         $vue = Str::studly($this->argument('vue'));
 
         if (Str::contains(strtolower($vue), 'vue') === false) {
-            $vue .= 'vue';
+            $vue .= '';
         }
 
         return $vue;
@@ -111,7 +111,7 @@ class VueMakeCommand extends GeneratorCommand
     /**
      * @return array|string
      */
-    private function getControllerNameWithoutNamespace()
+    private function getVueNameWithoutNamespace()
     {
         return class_basename($this->getVueName());
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace DXMB\Modules\Commands;
 
-use Nwidart\Modules\Activators\FileActivator;
-use Nwidart\Modules\Tests\BaseTestCase;
+use DXMB\Modules\Activators\FileActivator;
+use DXMB\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
 class ModuleDeleteCommandTest extends BaseTestCase

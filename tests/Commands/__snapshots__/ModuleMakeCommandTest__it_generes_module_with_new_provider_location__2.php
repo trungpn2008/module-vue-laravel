@@ -1,5 +1,5 @@
 <?php return '{
-    "name": "nwidart/blog",
+    "name": "DXMB/blog",
     "description": "",
     "authors": [
         {

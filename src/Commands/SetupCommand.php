@@ -1,6 +1,6 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace DXMB\Modules\Commands;
 
 use Illuminate\Console\Command;
 

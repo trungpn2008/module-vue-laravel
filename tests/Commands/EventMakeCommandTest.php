@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules\Tests\Commands;
+namespace DXMB\Modules\Tests\Commands;
 
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Tests\BaseTestCase;
+use DXMB\Modules\Contracts\RepositoryInterface;
+use DXMB\Modules\Tests\BaseTestCase;
 use Spatie\Snapshots\MatchesSnapshots;
 
 class EventMakeCommandTest extends BaseTestCase

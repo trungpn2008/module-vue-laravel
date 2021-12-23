@@ -1,6 +1,6 @@
 <?php
 
-namespace Nwidart\Modules\Generators;
+namespace DXMB\Modules\Generators;
 
 abstract class Generator
 {

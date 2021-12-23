@@ -1,11 +1,11 @@
 <?php
 
-namespace Nwidart\Modules\Tests;
+namespace DXMB\Modules\Tests;
 
 use Modules\Recipe\Providers\DeferredServiceProvider;
 use Modules\Recipe\Providers\RecipeServiceProvider;
-use Nwidart\Modules\Contracts\ActivatorInterface;
-use Nwidart\Modules\Json;
+use DXMB\Modules\Contracts\ActivatorInterface;
+use DXMB\Modules\Json;
 
 class ModuleTest extends BaseTestCase
 {
@@ -135,7 +135,7 @@ class ModuleTest extends BaseTestCase
     /** @test */
     public function it_reads_key_from_composer_json_file_via_helper_method()
     {
-        $this->assertEquals('nwidart/recipe', $this->module->getComposerAttr('name'));
+        $this->assertEquals('DXMB/recipe', $this->module->getComposerAttr('name'));
     }
 
     /** @test */
@@ -243,7 +243,7 @@ class ModuleTest extends BaseTestCase
     }
 }
 
-class TestingModule extends \Nwidart\Modules\Laravel\Module
+class TestingModule extends \DXMB\Modules\Laravel\Module
 {
     public function registerProviders(): void
     {

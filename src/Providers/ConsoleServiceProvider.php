@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules\Providers;
+namespace DXMB\Modules\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Nwidart\Modules\Commands;
+use DXMB\Modules\Commands;
 
 class ConsoleServiceProvider extends ServiceProvider
 {

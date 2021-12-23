@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules\Contracts;
+namespace DXMB\Modules\Contracts;
 
-use Nwidart\Modules\Module;
+use DXMB\Modules\Module;
 
 interface ActivatorInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules\Tests;
+namespace DXMB\Modules\Tests;
 
-use Nwidart\Modules\Contracts\ActivatorInterface;
-use Nwidart\Modules\Json;
+use DXMB\Modules\Contracts\ActivatorInterface;
+use DXMB\Modules\Json;
 
 class LumenModuleTest extends BaseTestCase
 {
@@ -109,7 +109,7 @@ class LumenModuleTest extends BaseTestCase
     /** @test */
     public function it_reads_key_from_composer_json_file_via_helper_method()
     {
-        $this->assertEquals('nwidart/recipe', $this->module->getComposerAttr('name'));
+        $this->assertEquals('DXMB/recipe', $this->module->getComposerAttr('name'));
     }
 
     /** @test */
@@ -164,6 +164,6 @@ class LumenModuleTest extends BaseTestCase
     }
 }
 
-class LumenTestingModule extends \Nwidart\Modules\Lumen\Module
+class LumenTestingModule extends \DXMB\Modules\Lumen\Module
 {
 }

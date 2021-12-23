@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules\Generators;
+namespace DXMB\Modules\Generators;
 
 use Illuminate\Filesystem\Filesystem;
-use Nwidart\Modules\Exceptions\FileAlreadyExistException;
+use DXMB\Modules\Exceptions\FileAlreadyExistException;
 
 class FileGenerator extends Generator
 {

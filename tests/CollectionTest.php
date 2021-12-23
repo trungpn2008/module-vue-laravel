@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules;
+namespace DXMB\Modules;
 
-use Nwidart\Modules\Laravel\Module;
-use Nwidart\Modules\Tests\BaseTestCase;
+use DXMB\Modules\Laravel\Module;
+use DXMB\Modules\Tests\BaseTestCase;
 
 class CollectionTest extends BaseTestCase
 {

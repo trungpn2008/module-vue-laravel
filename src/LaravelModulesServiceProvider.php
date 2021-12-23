@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules;
+namespace DXMB\Modules;
 
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Exceptions\InvalidActivatorClass;
-use Nwidart\Modules\Support\Stub;
+use DXMB\Modules\Contracts\RepositoryInterface;
+use DXMB\Modules\Exceptions\InvalidActivatorClass;
+use DXMB\Modules\Support\Stub;
 
 class LaravelModulesServiceProvider extends ModulesServiceProvider
 {

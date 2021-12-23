@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules\Tests;
+namespace DXMB\Modules\Tests;
 
-use Nwidart\Modules\Support\Migrations\SchemaParser;
+use DXMB\Modules\Support\Migrations\SchemaParser;
 
 class SchemaParserTest extends \PHPUnit\Framework\TestCase
 {

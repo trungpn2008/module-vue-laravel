@@ -1,8 +1,8 @@
 <?php
 
-namespace Nwidart\Modules\Tests;
+namespace DXMB\Modules\Tests;
 
-use Nwidart\Modules\Facades\Module;
+use DXMB\Modules\Facades\Module;
 
 class ModuleFacadeTest extends BaseTestCase
 {

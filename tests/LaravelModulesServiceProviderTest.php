@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules\Tests;
+namespace DXMB\Modules\Tests;
 
-use Nwidart\Modules\Contracts\ActivatorInterface;
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Exceptions\InvalidActivatorClass;
+use DXMB\Modules\Contracts\ActivatorInterface;
+use DXMB\Modules\Contracts\RepositoryInterface;
+use DXMB\Modules\Exceptions\InvalidActivatorClass;
 
 class LaravelModulesServiceProviderTest extends BaseTestCase
 {

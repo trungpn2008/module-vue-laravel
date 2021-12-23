@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules\Commands;
+namespace DXMB\Modules\Commands;
 
 use Illuminate\Filesystem\Filesystem;
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Tests\BaseTestCase;
+use DXMB\Modules\Contracts\RepositoryInterface;
+use DXMB\Modules\Tests\BaseTestCase;
 
 class ListCommandTest extends BaseTestCase
 {

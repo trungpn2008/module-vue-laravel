@@ -1,10 +1,10 @@
 <?php
 
-namespace Nwidart\Modules\Tests\Commands;
+namespace DXMB\Modules\Tests\Commands;
 
-use Nwidart\Modules\Contracts\RepositoryInterface;
-use Nwidart\Modules\Module;
-use Nwidart\Modules\Tests\BaseTestCase;
+use DXMB\Modules\Contracts\RepositoryInterface;
+use DXMB\Modules\Module;
+use DXMB\Modules\Tests\BaseTestCase;
 
 class EnableCommandTest extends BaseTestCase
 {

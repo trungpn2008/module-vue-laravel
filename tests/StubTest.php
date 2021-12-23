@@ -1,9 +1,9 @@
 <?php
 
-namespace Nwidart\Modules\Tests;
+namespace DXMB\Modules\Tests;
 
 use Illuminate\Support\Str;
-use Nwidart\Modules\Support\Stub;
+use DXMB\Modules\Support\Stub;
 
 class StubTest extends BaseTestCase
 {

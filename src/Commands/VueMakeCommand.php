@@ -48,25 +48,43 @@ class VueMakeCommand extends GeneratorCommand
         return $path . $controllerPath->getPath() . $viewPathVue .'/' . $this->getVueName() . '.vue';
     }
 
-    /**
-     * @return string
-     */
+
     protected function getTemplateContents()
     {
         $module = $this->laravel['modules']->findOrFail($this->getModuleName());
+        if (is_array($this->getStubName()) == true){
+            $contents = [];
+            foreach ($this->getStubName() as $item){
+               $content =  (new Stub($item, [
+                    'MODULENAME'        => $module->getStudlyName(),
+                    'CONTROLLERNAME'    => $this->getVueName(),
+                    'NAMESPACE'         => $module->getStudlyName(),
+                    'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
+                    'CLASS'             => $this->getVueNameWithoutNamespace(),
+                    'LOWER_NAME'        => $module->getLowerName(),
+                    'MODULE'            => $this->getModuleName(),
+                    'NAME'              => $this->getModuleName(),
+                    'STUDLY_NAME'       => $module->getStudlyName(),
+                    'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
+                ]))->render();
+               array_push($contents,$content);
+            }
+            return $contents;
+        }else{
+            return (new Stub($this->getStubName(), [
+                'MODULENAME'        => $module->getStudlyName(),
+                'CONTROLLERNAME'    => $this->getVueName(),
+                'NAMESPACE'         => $module->getStudlyName(),
+                'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
+                'CLASS'             => $this->getVueNameWithoutNamespace(),
+                'LOWER_NAME'        => $module->getLowerName(),
+                'MODULE'            => $this->getModuleName(),
+                'NAME'              => $this->getModuleName(),
+                'STUDLY_NAME'       => $module->getStudlyName(),
+                'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
+            ]))->render();
+        }
 
-        return (new Stub($this->getStubName(), [
-            'MODULENAME'        => $module->getStudlyName(),
-            'CONTROLLERNAME'    => $this->getVueName(),
-            'NAMESPACE'         => $module->getStudlyName(),
-            'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
-            'CLASS'             => $this->getVueNameWithoutNamespace(),
-            'LOWER_NAME'        => $module->getLowerName(),
-            'MODULE'            => $this->getModuleName(),
-            'NAME'              => $this->getModuleName(),
-            'STUDLY_NAME'       => $module->getStudlyName(),
-            'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
-        ]))->render();
     }
 
     /**
@@ -91,6 +109,7 @@ class VueMakeCommand extends GeneratorCommand
             ['create', 'c', InputOption::VALUE_NONE, 'Generate create vue', null],
             ['edit', 'e', InputOption::VALUE_NONE, 'Generate create edit'],
             ['show', 's', InputOption::VALUE_NONE, 'Generate create show'],
+            ['all', 'a', InputOption::VALUE_NONE, 'Generate create vue all'],
         ];
     }
 
@@ -135,6 +154,13 @@ class VueMakeCommand extends GeneratorCommand
             $stub = '/assets/js/Pages/edit.stub';
         } elseif ($this->option('show') === true) {
             $stub = '/assets/js/Pages/show.stub';
+        }elseif ($this->option('all') === true) {
+            $stub = [
+                '/assets/js/Pages/create.stub',
+                '/assets/js/Pages/edit.stub',
+                '/assets/js/Pages/show.stub',
+                '/assets/js/Pages/index.stub',
+            ];
         } else {
             $stub = '/assets/js/Pages/index.stub';
         }

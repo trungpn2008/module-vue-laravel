@@ -41,7 +41,19 @@ abstract class GeneratorCommand extends Command
         }
 
         $contents = $this->getTemplateContents();
+        if (is_array($contents)){
+            foreach ($contents as $content){
+                $this->renderContents($path,$content);
+            }
+        }else{
+            $this->renderContents($path,$contents);
+        }
 
+
+        return 0;
+    }
+
+    private function renderContents($path,$contents){
         try {
             $overwriteFile = $this->hasOption('force') ? $this->option('force') : false;
             (new FileGenerator($path, $contents))->withFileOverwrite($overwriteFile)->generate();
@@ -52,8 +64,6 @@ abstract class GeneratorCommand extends Command
 
             return E_ERROR;
         }
-
-        return 0;
     }
 
     /**

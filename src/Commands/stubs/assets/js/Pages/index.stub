@@ -1,5 +1,5 @@
 <template>
-  <default>
+    <default>
     <template v-slot:breadcrum>
         <breadcrum  :category="category" :menu="menu" :title="title"/>
     </template>
@@ -16,8 +16,23 @@
         <header />
     </template>
     <template v-slot:content>
-        <list-header />
-        <list-body :add="'users.create'"/>
+        <list-header :category="category"/>
+        <list-body
+        :fields="fields"
+        :items="menuList"
+        :currentPage="currentPage"
+        :perPage="perpage">
+            <template v-slot:button>
+
+            </template>
+            <template v-slot:action>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt mr-1"></i> edit</a>
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash mr-1"></i> delete</a>
+                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash mr-1"></i> details</a>
+                </div>
+            </template>
+        </list-body>
     </template>
   </default>
 </template>
@@ -44,12 +59,59 @@ export default {
         menu :{
             type: String,
             default : ""
+        },
+        menuList :{
+            type: Array,
+            default : []
         }
-    }
-
+    },
+    data(){
+        return {
+        fields: [
+            { key: "select", label: "Chọn" },
+            { key: "id", label: "id", sortable: true, sortDirection: "desc" ,tdClass : ['text-bold-600','pl-0']},
+            {
+            key: "name",
+            label: "name",
+            sortable: true,
+            sortDirection: "desc",
+            tdClass : ['text-bold-600','pl-0']
+            },
+            {
+            key: "parent",
+            label: "parent",
+            sortable: true,
+            sortDirection: "desc",
+            tdClass : ['text-bold-600','pl-0']
+            },
+            // { key: "slug", label: "Slug", sortable: true, sortDirection: "desc" },
+            // { key: "icon", label: "Icon", sortable: false, sortDirection: "desc" },
+            {
+            key: "link",
+            label: "Link",
+            sortable: false,
+            sortDirection: "desc",
+            },
+            {
+            key: "created_at",
+            label: "created_at",
+            sortable: true,
+            sortDirection: "desc",
+            thClass:['pl-0 sorting_asc']
+            },
+            { key: "active", label: "active"},
+            { key: "actions", label: "Actions" ,class: 'actions_table' },
+        ],
+        currentPage: 1,
+        total: 1,
+        perpage: 10,
+        }
+    },
 }
 </script>
 
-<style>
-
+<style scope>
+    .actions_table {
+        width: 61.7656px;
+    }
 </style>

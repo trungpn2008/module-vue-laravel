@@ -1,0 +1,34 @@
+<template>
+  <default :isFull="true">
+    <template v-slot:breadcrum>
+        <breadcrum  :category="category" :menu="menu" :title="title"/>
+    </template>
+    <template v-slot:content>
+        <div class="body_create"></div>
+    </template>
+  </default>
+</template>
+
+<script>
+import Breadcrum from '../../../../../../resources/js/components/Breadcrum/Breadcrum.vue'
+import Default from '../../../../../../resources/js/layouts/default.vue'
+export default {
+  components: {Default, Breadcrum},
+  props:{
+
+    },
+    data(){
+        return {
+        }
+    },
+    methods:{
+
+    }
+}
+</script>
+
+<style lang="scss">
+    .body_create{
+        padding: 10px 20px;
+    }
+</style>

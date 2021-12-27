@@ -55,9 +55,11 @@ class VueMakeCommand extends GeneratorCommand
         if (is_array($this->getStubName()) == true){
             $contents = [];
             foreach ($this->getStubName() as $item){
+                $name = str_replace('/assets/js/Pages/','',$item);
+                $name = str_replace('.stub','',$name);
                $content =  (new Stub($item, [
                     'MODULENAME'        => $module->getStudlyName(),
-                    'CONTROLLERNAME'    => $this->getVueName(),
+                    'CONTROLLERNAME'    => $name,
                     'NAMESPACE'         => $module->getStudlyName(),
                     'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
                     'CLASS'             => $this->getVueNameWithoutNamespace(),

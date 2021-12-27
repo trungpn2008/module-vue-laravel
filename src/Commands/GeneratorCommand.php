@@ -34,22 +34,32 @@ abstract class GeneratorCommand extends Command
      */
     public function handle() : int
     {
-        $path = str_replace('\\', '/', $this->getDestinationFilePath());
+        if (is_array($this->getDestinationFilePath())){
+            $path = [];
+            foreach ($this->getDestinationFilePath() as $item){
+                $path[]= str_replace('\\', '/', $item);
 
-        if (!$this->laravel['files']->isDirectory($dir = dirname($path))) {
-            $this->laravel['files']->makeDirectory($dir, 0777, true);
-        }
-
-        $contents = $this->getTemplateContents();
-        if (is_array($contents)){
-            foreach ($contents as $content){
-                $this->renderContents($path,$content);
+                if (!$this->laravel['files']->isDirectory($dir = dirname(str_replace('\\', '/', $item)))) {
+                    $this->laravel['files']->makeDirectory($dir, 0777, true);
+                }
+            }
+            $contents = $this->getTemplateContents();
+            if (is_array($contents)){
+                foreach ($contents as $key => $content){
+                    $this->renderContents($path[$key],$content);
+                }
             }
         }else{
+            $path = str_replace('\\', '/', $this->getDestinationFilePath());
+
+            if (!$this->laravel['files']->isDirectory($dir = dirname($path))) {
+                $this->laravel['files']->makeDirectory($dir, 0777, true);
+            }
+
+            $contents = $this->getTemplateContents();
             $this->renderContents($path,$contents);
+
         }
-
-
         return 0;
     }
 
@@ -59,6 +69,7 @@ abstract class GeneratorCommand extends Command
             (new FileGenerator($path, $contents))->withFileOverwrite($overwriteFile)->generate();
 
             $this->info("Created : {$path}");
+
         } catch (FileAlreadyExistException $e) {
             $this->error("File : {$path} already exists.");
 

@@ -45,9 +45,19 @@ class VueMakeCommand extends GeneratorCommand
 
         $controllerPath = GenerateConfigReader::read('Resources');
         $viewPathVue = 'Resources/assets/js/Pages';
-        return $path . $controllerPath->getPath() . $viewPathVue .'/' . $this->getVueName() . '.vue';
-    }
+        if (is_array($this->getStubName()) == true){
+            $parth_file=[];
+            foreach ($this->getStubName() as $item){
+                $name = str_replace('/assets/js/Pages/','',$item);
+                $name = str_replace('.stub','',$name);
+                $parth_file[]= $path . $controllerPath->getPath() . $viewPathVue .'/' . $this->getVueName().ucwords($name) . '.vue';
+            }
+            return $parth_file;
+        }else{
+            return $path . $controllerPath->getPath() . $viewPathVue .'/' . $this->getVueName() . '.vue';
+        }
 
+    }
 
     protected function getTemplateContents()
     {
@@ -57,9 +67,9 @@ class VueMakeCommand extends GeneratorCommand
             foreach ($this->getStubName() as $item){
                 $name = str_replace('/assets/js/Pages/','',$item);
                 $name = str_replace('.stub','',$name);
-               $content =  (new Stub($item, [
+                $content =  (new Stub($item, [
                     'MODULENAME'        => $module->getStudlyName(),
-                    'CONTROLLERNAME'    => $name,
+                    'CONTROLLERNAME'    => $this->getVueName().ucwords($name),
                     'NAMESPACE'         => $module->getStudlyName(),
                     'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
                     'CLASS'             => $this->getVueNameWithoutNamespace(),
@@ -69,7 +79,7 @@ class VueMakeCommand extends GeneratorCommand
                     'STUDLY_NAME'       => $module->getStudlyName(),
                     'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
                 ]))->render();
-               array_push($contents,$content);
+                array_push($contents,$content);
             }
             return $contents;
         }else{
@@ -97,8 +107,8 @@ class VueMakeCommand extends GeneratorCommand
     protected function getArguments()
     {
         return [
-            ['vue', InputArgument::REQUIRED, 'The name of the vue class.'],
-            ['module', InputArgument::OPTIONAL, 'The name of module will be used.'],
+            ['module', InputArgument::REQUIRED, 'The name of module will be used.'],
+            ['vue', InputArgument::OPTIONAL, 'The name of the vue class.'],
         ];
     }
 
